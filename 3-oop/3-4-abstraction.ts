@@ -8,8 +8,14 @@
     interface CoffeeMaker {
         makeCoffee(shots: number): CoffeeCup;
     }
+    
+    interface CommercialCoffeeMaker {
+        makeCoffee(shots: number): CoffeeCup;
+        fillCoffeeBeans(beans: number): void;
+        clean(): void;
+    }
 
-	class CoffeeMachine implements CoffeeMaker {
+	class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
 
 		private static BEANS_GRAMM_PERPSHOT: number = 7; 
 		private coffeeBeans: number = 0;
@@ -26,7 +32,12 @@
             if (beans < 0) {
                 throw new Error('value for beans should be greater than 0');
             }
+            console.log('filling coffee beans ...');
             this.coffeeBeans += beans;
+        }
+
+        clean() {
+            console.log('cleaning the machine ...');
         }
 
         private grindBeans(shots: number) {
@@ -57,14 +68,28 @@
 		}
 	}
 
+    class AmateurUser {
+        constructor(private machine: CoffeeMaker) {}
+        makeCoffee() {
+            const coffee = this.machine.makeCoffee(2);
+            console.log(coffee);
+        }
+    }
+    
+    class ProBarista {
+        constructor(private machine: CommercialCoffeeMaker) {
+        }
+        makeCoffee() {
+            const coffee = this.machine.makeCoffee(2);
+            console.log(coffee);
+            this.machine.fillCoffeeBeans(45);
+            this.machine.clean();
+        }
+    }
+
     const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
-    maker.fillCoffeeBeans(32);
-    
-    // 외부에서 호출 순서를 알지 못해도 원하는 동작을 할 수 있음 (정말 필요한 함수만 노출시킴) 
-    // 캡슐화를 통해 추상화를 구현
-    maker.makeCoffee(2);
-    
-    const maker2: CoffeeMaker = CoffeeMachine.makeMachine(32);
-    // maker2.fillCoffeeBeans(32); 호출 불가능
-    maker2.makeCoffee(32);
+    const amateur = new AmateurUser(maker);
+    const pro = new ProBarista(maker);
+    amateur.makeCoffee();
+    pro.makeCoffee();
 }
