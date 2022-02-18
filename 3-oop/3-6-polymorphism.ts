@@ -3,6 +3,7 @@
 		shots: number;
     hasMilk?: boolean;
     hasSugar?: boolean;
+  };
     
   interface CoffeeMaker {
     makeCoffee(shots: number): CoffeeCup;
