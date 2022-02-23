@@ -49,11 +49,12 @@ const obj2 = {
     animal: 'cat'
 }
 
-console.log(getValue(obj, 'name')); // autumn
-console.log(getValue(obj, 'age')); // 20
-console.log(getValue(obj2, 'animal')); // cat
-
 // keyof : 오브젝트 내부에 있는 키의 타입
 function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
     return obj[key]
 }
+
+console.log(getValue(obj, 'name')); // autumn
+console.log(getValue(obj, 'age')); // 20
+console.log(getValue(obj2, 'animal')); // cat
+
