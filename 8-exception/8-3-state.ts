@@ -12,6 +12,8 @@
 
   class NetworkClient {
     tryConnect(): ResultState {
+      const result: SuccessState = {result: 'success'}
+      return result;
     }
   }
 
