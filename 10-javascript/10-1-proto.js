@@ -43,4 +43,4 @@ console.log(latteMachine);
 
 // prototype
 // 자바스크립트에서 객체지향 프로그래밍, 상속, 코드의 재사용을 위해서 사용됨 
-latteMachine.makeCoffee();
+latteMachine.makeCoffee(); // 상속 구현
