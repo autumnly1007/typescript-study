@@ -73,7 +73,8 @@
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
 
     // 디버깅 시 사용
-    // "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
+    // 타입스크립트 코드와 컴파일된 자바스크립트 코드를 연결시켜주는 정보를 담고있는 map 파일 생성
+    "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
 
     // 여러개의 타입스크립트 파일을 하나의 자바스크립트 파일로 만들 경우 사용
     // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If `declaration` is true, also designates a file that bundles all .d.ts output. */
